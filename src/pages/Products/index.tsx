@@ -76,7 +76,7 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-28">
       {/* Hero Section */}
       <section className="relative py-20 bg-primary">
         <div className="container mx-auto px-4">
@@ -98,7 +98,7 @@ const Products = () => {
       </section>
 
       {/* Categories Filter */}
-      <section className="py-8 bg-background sticky top-20 z-40 border-b border-border shadow-sm">
+      <section className="py-8 bg-background sticky top-24 z-40 border-b border-border shadow-sm">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -218,7 +218,7 @@ const Products = () => {
               >
                 <Card className="border-2 hover:border-primary transition-all duration-300 h-full">
                   <CardContent className="p-6 text-center">
-                    <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary flex items-center justify-center">
                       <span className="text-primary-foreground font-bold text-xl">
                         {index + 1}
                       </span>

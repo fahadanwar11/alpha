@@ -8,12 +8,14 @@ import Products from "@/pages/Products";
 import Contact from "@/pages/contact";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <TooltipProvider>
       <Toaster />
       <BrowserRouter>
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-1">

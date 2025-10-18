@@ -106,7 +106,7 @@ const About = () => {
   // ];
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-28">
       {/* Hero Section */}
       <motion.section
         className="relative py-20 overflow-hidden bg-primary"
