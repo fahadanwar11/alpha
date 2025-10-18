@@ -39,7 +39,7 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Alfa Scientific Store</h3>
             <p className="text-primary-foreground/80 text-sm mb-4">
               Leading supplier of diagnostic and medical laboratory equipment in
-              Pakistan for over 35 years.
+              Pakistan for over 40 years.
             </p>
             <div className="flex items-center space-x-2 text-sm">
               <Mail size={16} />

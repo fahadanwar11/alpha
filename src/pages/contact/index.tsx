@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, TabletSmartphone } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -113,7 +113,7 @@ const Contact = () => {
               {
                 icon: Clock,
                 title: "Working Hours",
-                content: "Mon-Sat: 9AM - 6PM",
+                content: "Mon-Sat: 10AM - 7PM",
               },
             ].map((item, index) => (
               <motion.div
@@ -128,7 +128,7 @@ const Contact = () => {
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 360 }}
                       transition={{ duration: 0.6 }}
-                      className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-[var(--shadow-soft)]"
+                      className="w-14 h-14 mx-auto mb-4 rounded-full bg-primary flex items-center justify-center shadow-[var(--shadow-soft)]"
                     >
                       <item.icon className="w-7 h-7 text-primary-foreground" />
                     </motion.div>
@@ -265,7 +265,7 @@ const Contact = () => {
                     <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-[var(--shadow-soft)]">
                       <CardContent className="p-6">
                         <div className="flex items-start space-x-4">
-                          <div className="w-12 h-12 flex-shrink-0 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center">
+                          <div className="w-12 h-12 flex-shrink-0 rounded-full bg-primary flex items-center justify-center">
                             <MapPin className="w-6 h-6 text-primary-foreground" />
                           </div>
                           <div className="flex-1">
@@ -282,12 +282,12 @@ const Contact = () => {
                             </p>
                             {office.phone && (
                               <p className="text-primary font-medium">
-                                📞 {office.phone}
+                               <span className="flex justify-start items-center gap-2"><Phone className="w-4 h-4"/> {office.phone}</span> 
                               </p>
                             )}
                             {office.mobile && (
                               <p className="text-primary font-medium">
-                                📱 {office.mobile}
+                               <span className="flex justify-start items-center gap-2"><TabletSmartphone className="w-4 h-4"/> {office.mobile}</span> 
                               </p>
                             )}
                           </div>

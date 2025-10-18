@@ -41,18 +41,14 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-3"
             >
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-[var(--shadow-soft)]">
-                <span className="text-primary-foreground font-bold text-xl">
-                  A
-                </span>
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center shadow-[var(--shadow-soft)]">
+               <img src="/logo.png" alt="Alfa Scientific" className="w-8 h-8" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-primary">
                   Alfa Scientific
                 </h1>
-                <p className="text-xs text-muted-foreground">
-                  Medical Solutions
-                </p>
+                
               </div>
             </motion.div>
           </Link>

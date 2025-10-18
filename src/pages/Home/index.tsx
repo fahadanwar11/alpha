@@ -6,16 +6,16 @@ import { Clock, MapPin, Award } from "lucide-react";
 import heroImage from "@/assets/hero-medical.jpg";
 
 const Home = () => {
-//   const handleToastDemo = () => {
-//     toast.success("Welcome to Alfa Scientific Store!", {
-//       description: "Your trusted partner in medical equipment since 1988.",
-//       duration: 4000,
-//     });
-//   };
+  //   const handleToastDemo = () => {
+  //     toast.success("Welcome to Alfa Scientific Store!", {
+  //       description: "Your trusted partner in medical equipment since 1988.",
+  //       duration: 4000,
+  //     });
+  //   };
   const features = [
     {
       icon: Award,
-      title: "Over 35 Years of Expertise",
+      title: "Over 40 Years of Expertise",
       description: "Trusted partner in healthcare since 1988",
     },
     {
@@ -31,11 +31,14 @@ const Home = () => {
   ];
 
   const partners = [
-    "Analyticon",
-    "Wiener Lab",
-    "Healstone",
-    "Arena Bioscien",
-    "Hebei Choaran",
+    { logo: "/partners/analyticon.webp", name: "Analyticon" },
+    { logo: "/partners/weinerlab.jpeg", name: "Wiener Lab" },
+    { logo: "/partners/biocheck.png", name: "BioCheck" },
+    { logo: "/partners/bioscien.png", name: "Arena Bioscien" },
+    { logo: "/partners/chaoran.jpg", name: "Chaoran" },
+    { logo: "/partners/lituo.png", name: "Lituo" },
+    { logo: "/partners/steellex.png", name: "Steellex" },
+    { logo: "/partners/diatron.png", name: "Diatron" },
   ];
 
   const fadeInUp = {
@@ -73,9 +76,7 @@ const Home = () => {
             >
               Leading Medical Equipment
               <br />
-              <span className="bg-clip-text">
-                Solutions in Pakistan
-              </span>
+              <span className="bg-clip-text">Solutions in Pakistan</span>
             </motion.h1>
 
             <motion.p
@@ -85,7 +86,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               Trusted supplier of diagnostic and medical laboratory equipment
-              for over 35 years
+              for over 40 years
             </motion.p>
 
             <motion.div
@@ -147,6 +148,48 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Partners Section */}
+      <section className="py-20 bg-gradient-to-b from-muted to-background">
+        <div className="container mx-auto px-4">
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+              Meet Our Partners
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Working with world-class brands to deliver excellence
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {partners.map((partner, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <Card className="border-2 hover:border-primary transition-all duration-300">
+                  <CardContent className="p-8 flex flex-col gap-4 items-center justify-center h-[180px]">
+                    <div className="h-20 w-full flex items-center justify-center">
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-20 max-w-full object-contain"
+                      />
+                    </div>
+                    <h3 className="text-lg font-semibold text-primary text-center">
+                      {partner.name}
+                    </h3>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -174,7 +217,7 @@ const Home = () => {
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 360 }}
                       transition={{ duration: 0.6 }}
-                      className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-[var(--shadow-soft)]"
+                      className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary flex items-center justify-center shadow-[var(--shadow-soft)]"
                     >
                       <feature.icon className="w-8 h-8 text-primary-foreground" />
                     </motion.div>
@@ -191,42 +234,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Partners Section */}
-      <section className="py-20 bg-gradient-to-b from-muted to-background">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-              Meet Our Partners
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Working with world-class brands to deliver excellence
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {partners.map((partner, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <Card className="border-2 hover:border-primary transition-all duration-300">
-                  <CardContent className="p-8 flex items-center justify-center min-h-[120px]">
-                    <h3 className="text-lg font-semibold text-primary text-center">
-                      {partner}
-                    </h3>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[var(--gradient-hero)]" />
