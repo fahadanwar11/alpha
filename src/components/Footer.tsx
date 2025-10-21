@@ -59,6 +59,7 @@ const Footer = () => {
               {[
                 { name: "Home", path: "/" },
                 { name: "About Us", path: "/about" },
+                { name: "Our Partners", path: "/our-partners" },
                 { name: "Products", path: "/products" },
                 { name: "Contact", path: "/contact" },
               ].map((link) => (
@@ -113,7 +114,7 @@ const Footer = () => {
               © {currentYear} Alfa Scientific Store. All rights reserved.
             </p>
             <p className="text-sm text-primary-foreground/80">
-              Trusted partner in healthcare since 1988
+              Trusted partner in healthcare since 1985
             </p>
           </div>
         </div>

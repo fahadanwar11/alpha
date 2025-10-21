@@ -8,7 +8,7 @@ import heroImage from "@/assets/hero-medical.jpg";
 const Home = () => {
   //   const handleToastDemo = () => {
   //     toast.success("Welcome to Alfa Scientific Store!", {
-  //       description: "Your trusted partner in medical equipment since 1988.",
+  //       description: "Your trusted partner in medical equipment since 1985.",
   //       duration: 4000,
   //     });
   //   };
@@ -16,7 +16,7 @@ const Home = () => {
     {
       icon: Award,
       title: "Over 40 Years of Expertise",
-      description: "Trusted partner in healthcare since 1988",
+      description: "Trusted partner in healthcare since 1985",
     },
     {
       icon: MapPin,

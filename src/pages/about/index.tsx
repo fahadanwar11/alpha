@@ -135,7 +135,7 @@ const About = () => {
             >
               <div className="bg-background rounded-full px-8 py-3">
                 <span className="text-primary font-semibold">
-                  Trusted Since 1988
+                  Trusted Since 1985
                 </span>
               </div>
             </motion.div> */}
@@ -208,7 +208,7 @@ const About = () => {
               <motion.div variants={itemVariants} className="space-y-6">
                 <div className="prose prose-lg text-foreground">
                   <p>
-                    Founded in 1988, our Founded in 1988, our company began with
+                    Founded in 1985, our Founded in 1985, our company began with
                     a clear purpose — to make reliable diagnostic and medical
                     equipment accessible to healthcare providers across
                     Pakistan. Starting as a small operation in Lahore, we have

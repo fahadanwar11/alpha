@@ -9,6 +9,7 @@ import Contact from "@/pages/contact";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import OurPartners from "./pages/our-partners";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/products" element={<Products />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/our-partners" element={<OurPartners />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
