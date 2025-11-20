@@ -1,72 +1,31 @@
 import { motion } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Microscope, Activity, Beaker, Zap, FlaskConical, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
-import microscopeImg from "@/assets/product-microscope.jpg";
-import analyzerImg from "@/assets/product-analyzer.jpg";
-import centrifugeImg from "@/assets/product-centrifuge.jpg";
-import testingImg from "@/assets/product-testing.jpg";
+import { products, categories } from "@/data/products";
+import { useState } from "react";
 
 const Products = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Laboratory Microscopes",
-      category: "Diagnostic Equipment",
-      description: "High-precision microscopes for detailed cellular analysis and diagnostics",
-      image: microscopeImg,
-      icon: Microscope,
-    },
-    {
-      id: 2,
-      name: "Hematology Analyzers",
-      category: "Blood Analysis",
-      description: "Advanced analyzers for comprehensive blood cell counting and analysis",
-      image: analyzerImg,
-      icon: Activity,
-    },
-    {
-      id: 3,
-      name: "Laboratory Centrifuges",
-      category: "Sample Processing",
-      description: "High-speed centrifuges for efficient sample separation and processing",
-      image: centrifugeImg,
-      icon: Zap,
-    },
-    {
-      id: 4,
-      name: "Chemistry Analyzers",
-      category: "Clinical Chemistry",
-      description: "Automated systems for biochemical analysis and diagnostic testing",
-      image: testingImg,
-      icon: Beaker,
-    },
-    {
-      id: 5,
-      name: "Coagulation Systems",
-      category: "Hemostasis Testing",
-      description: "Precise instruments for blood coagulation and clotting factor analysis",
-      image: analyzerImg,
-      icon: Heart,
-    },
-    {
-      id: 6,
-      name: "Reagents & Supplies",
-      category: "Laboratory Consumables",
-      description: "High-quality reagents and consumables for accurate test results",
-      image: testingImg,
-      icon: FlaskConical,
-    },
-  ];
+  const [activeCategory, setActiveCategory] = useState("All Products");
 
-  const categories = [
-    "All Products",
-    "Diagnostic Equipment",
-    "Blood Analysis",
-    "Sample Processing",
-    "Clinical Chemistry",
-  ];
+  const filteredProducts =
+    activeCategory === "All Products"
+      ? products
+      : products.filter((product) => product.category === activeCategory);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -108,10 +67,11 @@ const Products = () => {
             {categories.map((category, index) => (
               <motion.button
                 key={index}
+                onClick={() => setActiveCategory(category)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-                  index === 0
+                  activeCategory === category
                     ? "bg-primary text-primary-foreground shadow-[var(--shadow-soft)]"
                     : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
                 }`}
@@ -123,58 +83,106 @@ const Products = () => {
         </div>
       </section>
 
-      {/* Products Grid */}
+      {/* Products List (Accordion) */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
+        <div className="container mx-auto px-4 max-w-5xl">
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {filteredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <Card className="h-full border-2 hover:border-primary transition-all duration-300 hover:shadow-[var(--shadow-medium)] group overflow-hidden">
-                  <div className="relative h-64 overflow-hidden">
-                    <motion.img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                      <div className="p-4 text-primary-foreground">
-                        <product.icon className="w-8 h-8" />
+                <AccordionItem
+                  value={`item-${product.id}`}
+                  className="border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-card"
+                >
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center gap-6 text-left w-full">
+                      <div className="hidden sm:block w-24 h-24 rounded-md overflow-hidden flex-shrink-0 border border-border">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <product.icon className="w-5 h-5 text-primary" />
+                          <span className="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                            {product.category}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-foreground">
+                          {product.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mt-1 line-clamp-1">
+                          {product.description}
+                        </p>
                       </div>
                     </div>
-                  </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-6 pt-2">
+                    <div className="space-y-6">
+                      <div className="p-4 bg-muted/30 rounded-lg border border-border/50">
+                        <p className="text-foreground/80 leading-relaxed">
+                          {product.description}
+                        </p>
+                      </div>
 
-                  <CardContent className="p-6">
-                    <div className="mb-3">
-                      <span className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">
-                        {product.category}
-                      </span>
+                      <div>
+                        <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                          <div className="w-1 h-6 bg-primary rounded-full" />
+                          Available Models
+                        </h4>
+                        <div className="rounded-md border border-border overflow-hidden">
+                          <Table>
+                            <TableHeader className="bg-muted/50">
+                              <TableRow>
+                                <TableHead className="w-[150px]">Model</TableHead>
+                                <TableHead>Description</TableHead>
+                                <TableHead>Specifications</TableHead>
+                                <TableHead className="text-right">Catalog No.</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {product.subProducts.map((sub) => (
+                                <TableRow key={sub.catalogNo}>
+                                  <TableCell className="font-medium text-primary">
+                                    {sub.model}
+                                  </TableCell>
+                                  <TableCell>{sub.description}</TableCell>
+                                  <TableCell>{sub.specifications}</TableCell>
+                                  <TableCell className="text-right font-mono text-xs">
+                                    {sub.catalogNo}
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-end pt-2">
+                        <Button asChild>
+                          <Link to="/contact">Request Quote</Link>
+                        </Button>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-bold text-primary mb-2 group-hover:text-primary-light transition-colors">
-                      {product.name}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-2">
-                      {product.description}
-                    </p>
-                    <Button
-                      variant="outline"
-                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground"
-                      asChild
-                    >
-                      <Link to="/contact">Request Information</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
+                  </AccordionContent>
+                </AccordionItem>
               </motion.div>
             ))}
-          </div>
+          </Accordion>
+
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-xl text-muted-foreground">
+                No products found in this category.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -273,3 +281,4 @@ const Products = () => {
 };
 
 export default Products;
+
